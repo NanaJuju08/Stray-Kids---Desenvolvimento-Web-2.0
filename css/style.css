@@ -1,0 +1,323 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    background: 
+        radial-gradient(circle at top,
+        #16162b,
+        #050510 60%);
+    color: white;
+    font-family: Arial, sans-serif;
+    overflow: hidden;
+}
+
+/* all sections */
+section{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* title */
+h1{
+    font-size: 5rem;
+    color: #00f00f;
+    text-shadow:
+        0 0 10px #00f0ff,
+        0 0 20px #00f0ff,
+        0 0 40px #00f0ff;
+}
+
+/* subtitle */
+h2{
+    margin-bottom: 40px;
+    font-size: 3rem;
+}
+
+/* buttons */
+button{
+    margin-top: 30px;
+
+    padding: 15px 40px;
+
+    background: transparent;
+
+    border: 2px solid #00f0ff;
+
+    color: #00f0ff;
+
+    font-size: 1rem;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+button:hover{
+    background: #00f0ff;
+    color: black;
+
+    box-shadow:
+    0 0 10px #00f0ff,
+    0 0 30px #00f0ff;
+}
+
+/* cards */
+.members-container{
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.member-card{
+    width: 150px;
+    height: 200px;
+    border: 2px solid #00f0ff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition:
+    transform 0.2s,
+    box-shadow 0.3s;
+    background: rgba(255,255,255,0.05);
+    backdrop-filter: blur(10px);
+    position: relative;
+    overflow: hidden;
+    border-radius: 20px;
+}
+
+.member-card:hover{
+    transform: translateY(-10px);
+    box-shadow:
+        0 0 10px #00f0ff,
+        0 0 30px #00f0ff;
+}
+
+/* holographic line */
+.member-card::before{
+    content: "";
+    position: absolute;
+    width: 200%;
+    height: 50px;
+    background: rgba(255,255,255,0.2);
+    transform:rotate(45deg);
+    top:-100px;
+    left:-100px;
+    transition: 0.5s;
+}
+
+/* animation */
+.member-card:hover::before{
+    top:250px;
+    left:250px;
+}
+
+/* name */
+.member-card h3{
+    font-size: 1.5rem;
+    z-index: 2;
+}
+
+/* acess text */
+.member-card span{
+    position: absolute;
+    bottom: 20px;
+    font-size: 0.8rem;
+    color:#00f0ff;
+    letter-spacing: 3px;
+}
+
+/* HAN */
+.han{
+    border-color: #ff9900;
+}
+
+.han:hover{
+    box-shadow:
+    0 0 10px #ff9900,
+    0 0 30px #ff9900;
+}
+
+
+/* FELIX */
+.felix{
+    border-color: #00d9ff;
+}
+
+.felix:hover{
+    box-shadow:
+    0 0 10px #00d9ff,
+    0 0 30px #00d9ff;
+}
+
+
+/* CHAN */
+.bangchan{
+    border-color: #ff003c;
+}
+
+.bangchan:hover{
+    box-shadow:
+    0 0 10px #ff003c,
+    0 0 30px #ff003c;
+}
+
+/* effects */
+.glitch{
+    position: relative;
+    color: white;
+    animation: glitch 1s infinite;
+    display: inline-block;
+}
+
+.glitch::before,
+.glitch::after{
+    content: attr(data-text);
+    position:absolute;
+    left:0;
+    top:0;
+    width:100%;
+    height:100%;
+    animation: glitch-blue 0.3s infinite;
+}
+
+.glitch::before{
+    color:#00f0ff;
+    z-index: -1;
+    animation: glitch-blue 0.3s infinite;
+}
+
+.glitch::after{
+    color:#ff0055;
+    z-index: -2;
+    animation: glitch-red 0.3s infinite;
+}
+
+@keyframes glitch{
+
+    0%{
+        transform: translate(0);
+    }
+
+    20%{
+        transform: translate(-2px, 2px);
+    }
+
+    40%{
+        transform: translate(-2px, -2px);
+    }
+
+    60%{
+        transform: translate(2px, 2px);
+    }
+
+    80%{
+        transform: translate(2px, -2px);
+    }
+
+    100%{
+        transform: translate(0);
+    }
+}
+
+
+@keyframes glitch-blue{
+
+    0%{
+        transform: translate(0);
+    }
+
+    50%{
+        transform: translate(-3px, 0);
+    }
+
+    100%{
+        transform: translate(0);
+    }
+}
+
+
+@keyframes glitch-red{
+
+    0%{
+        transform: translate(0);
+    }
+
+    50%{
+        transform: translate(3px, 0);
+    }
+
+    100%{
+        transform: translate(0);
+    }
+}
+
+/* scanline */
+.scanline{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    background:
+    repeating-linear-gradient(
+        to bottom,
+        rgba(255,255,255,0.03),
+        rgba(255,255,255,0.03) 1px,
+        transparent 1px,
+        transparent 4px
+    );
+    animation: scanMove 8s linear infinite;
+    z-index: 999;
+}
+
+/* movements */
+@keyframes scanMove{
+    0%{
+        transform: translateY(0);
+    }
+
+    100%{
+        transform: translate7(10px);
+    }
+}
+
+/* member dimension */
+#member-dimension{
+    display: none;
+    gap: 20px;
+    background:
+    radial-gradient(circle at center,
+    #1a0d00,
+    #050510 70%);
+}
+
+#member-name{
+
+    font-size: 6rem;
+
+    color: #ff9900;
+
+    text-shadow:
+    0 0 10px #ff9900,
+    0 0 30px #ff9900,
+    0 0 60px #ff9900;
+}
+
+#member-quote{
+
+    font-size: 1.3rem;
+
+    opacity: 0.8;
+
+    letter-spacing: 2px;
+}
