@@ -8,125 +8,138 @@
 </head>
 <body>
 
-    <!-- particles -->
-    <div id="particles"></div>
+    <div class="noise"></div>
+    <div class="particles"></div>
 
-    <!-- scanline -->
-     <div class="scanline"></div>
+    <!-- HERO -->
+    <section class="hero">
 
-    <!-- intro -->
-     <section id="intro-screen">
+        <nav>
+            <h1>SKZ SYSTEM</h1>
+        </nav>
 
-        <h1>SKZ SYSTEM</h1>
-        
-        <button id="enter-btn">
-            PLAY
-        </button>
-     </section>
+        <div class="hero-content">
 
-     <!-- member selector -->
-     <section id="member-selector">
+            <h2>
+                CHOOSE YOUR GUIDE
+            </h2>
 
-        <h2 class="glitch" data-text="Choose your guide">
-            Choose your guide
-        </h2>
-
-        <div class="members-container">
-
-            <div class="member-card bangchan">
-                <h3>BANGCHAN</h3>
-
-                <span>
-                    ACCES
-                </span>
-
-            </div>
-
-            <div class="member-card leeknow">
-                <h3>LEE KNOW</h3>
-
-                <span>
-                    ACCES
-                </span>
-
-            </div>
-
-            <div class="member-card changbin">
-                <h3>CHANGBIN</h3>
-
-                <span>
-                    ACCES
-                </span>
-
-            </div>
-
-            <div class="member-card hyunjin">
-                <h3>HYUNJIN</h3>
-
-                <span>
-                    ACCES
-                </span>
-
-            </div>
-
-            <div class="member-card han">
-                <h3>HAN</h3>
-                
-                <span>
-                    ACCES
-                </span>
-
-            </div>
-
-            <div class="member-card felix">
-                <h3>FELIX</h3>
-
-                
-                <span>
-                    ACCES
-                </span>
-
-            </div>
-
-            <div class="member-card seungmin">
-                <h3>SEUNGMIN</h3>
-
-                <span>
-                    ACCES
-                </span>
-
-            </div>
-
-            <div class="member-card in">
-                <h3>IN</h3>
-
-                <span>
-                    ACCES
-                </span>
-                
-            </div>
+            <button class="enter-btn">
+                ENTER SYSTEM
+            </button>
 
         </div>
 
-     </section>
-     
-     <!-- member dimension -->
-     <section id="member-dimension">
+    </section>
 
-        <h2 id="member-name">
-            HAN
-        </h2>
 
-        <p class="member-quote">
-            Welcome to the Stray kids!
-        </p>
+    <!-- MEMBER SHOWCASE -->
+    <section class="member-showcase">
 
-        <button id="back-btn">
-            RETURN
+        <button class="slide-btn prev-btn" aria-label="Previous member">
+            &#8249;
         </button>
 
-     </section>
+        <div class="member-slide bang-chan">
+            <div class="member-text">
+                <p class="member-role">STRAY KIDS LEADER</p>
+                <h2>BANG CHAN</h2>
+                <p class="member-quote">"Step out, we are Stray Kids."</p>
+            </div>
+            <div class="member-image">
+                <img src="assets/images/members/bang-chan.jpg" onerror="this.onerror=null; this.src='assets/images/members/han.jpg';">
+            </div>
+        </div>
 
-     <script src="js/app.js"></script>
+        <div class="member-slide lee-know">
+            <div class="member-text">
+                <p class="member-role">STRAY KIDS MEMBER</p>
+                <h2>LEE KNOW</h2>
+                <p class="member-quote">"The stage follows his rhythm."</p>
+            </div>
+            <div class="member-image">
+                <img src="assets/images/members/lee-know.jpg" onerror="this.onerror=null; this.src='assets/images/members/han.jpg';">
+            </div>
+        </div>
+
+        <div class="member-slide changbin">
+            <div class="member-text">
+                <p class="member-role">STRAY KIDS MEMBER</p>
+                <h2>CHANGBIN</h2>
+                <p class="member-quote">"A voice built with impact."</p>
+            </div>
+            <div class="member-image">
+                <img src="assets/images/members/changbin.jpg" onerror="this.onerror=null; this.src='assets/images/members/han.jpg';">
+            </div>
+        </div>
+
+        <div class="member-slide hyunjin">
+            <div class="member-text">
+                <p class="member-role">STRAY KIDS MEMBER</p>
+                <h2>HYUNJIN</h2>
+                <p class="member-quote">"Movement becomes a signature."</p>
+            </div>
+            <div class="member-image">
+                <img src="assets/images/members/hyunjin.jpg" onerror="this.onerror=null; this.src='assets/images/members/han.jpg';">
+            </div>
+        </div>
+
+        <div class="member-slide active han">
+            <div class="member-text">
+                <p class="member-role">STRAY KIDS MEMBER</p>
+                <h2>HAN</h2>
+                <p class="member-quote">"You make Stray Kids stay."</p>
+            </div>
+            <div class="member-image">
+                <img src="assets/images/members/han.jpg">
+            </div>
+        </div>
+
+        <div class="member-slide felix">
+            <div class="member-text">
+                <p class="member-role">STRAY KIDS MEMBER</p>
+                <h2>FELIX</h2>
+                <p class="member-quote">"Sunshine with a thunder-deep voice."</p>
+            </div>
+            <div class="member-image">
+                <img src="assets/images/members/felix.jpg" onerror="this.onerror=null; this.src='assets/images/members/han.jpg';">
+            </div>
+        </div>
+
+        <div class="member-slide seungmin">
+            <div class="member-text">
+                <p class="member-role">STRAY KIDS MEMBER</p>
+                <h2>SEUNGMIN</h2>
+                <p class="member-quote">"Every note lands clean."</p>
+            </div>
+            <div class="member-image">
+                <img src="assets/images/members/seungmin.jpg" onerror="this.onerror=null; this.src='assets/images/members/han.jpg';">
+            </div>
+        </div>
+
+        <div class="member-slide in">
+            <div class="member-text">
+                <p class="member-role">STRAY KIDS MEMBER</p>
+                <h2>I.N</h2>
+                <p class="member-quote">"Sharp presence, bright energy."</p>
+            </div>
+            <div class="member-image">
+                <img src="assets/images/members/in.jpg" onerror="this.onerror=null; this.src='assets/images/members/han.jpg';">
+            </div>
+        </div>
+
+        <button class="slide-btn next-btn" aria-label="Next member">
+            &#8250;
+        </button>
+
+        <div class="slide-dots" aria-label="Member navigation"></div>
+
+        <button class="lock-guide-btn">
+            LOCK GUIDE
+        </button>
+
+    </section>
+
+    <script src="js/app.js"></script>
 </body>
 </html>

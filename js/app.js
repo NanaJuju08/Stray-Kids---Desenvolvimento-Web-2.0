@@ -1,143 +1,175 @@
-//Get elements
-const introScreen = document.getElementById('intro-screen');
-const memberSelector = document.getElementById('member-selector');
-const enterBtn = document.getElementById('enter-btn');
-const cards = document.querySelectorAll('.member-card');
-const memberDimension = document.getElementById('member-dimension');
-const memberName = document.getElementById('member-name');
-const memberQuote = document.getElementById('member-quote');
-const backBtn = document.getElementById('back-btn');
+const enterBtn =
+document.querySelector(".enter-btn");
 
-cards.forEach(card => {
-    card.addEventListener('click', () => {
+const slides =
+document.querySelectorAll(".member-slide");
 
-        //han
-        if(card.classList.contains('han')){
+const prevBtn =
+document.querySelector(".prev-btn");
 
-            document.body.style.background =
-            "radial-gradient(circle at top, #3b2100, #050510 60%)";
-        }
+const nextBtn =
+document.querySelector(".next-btn");
 
-        //felix
-        if(card.classList.contains("felix")){
+const dotsContainer =
+document.querySelector(".slide-dots");
 
-            document.body.style.background =
-            "radial-gradient(circle at top, #001d2a, #050510 60%)";
-        }
+const particlesContainer =
+document.querySelector(".particles");
 
+const lockGuideBtn =
+document.querySelector(".lock-guide-btn");
 
-        // bangchan
-        if(card.classList.contains("bangchan")){
+const memberThemes = {
+    "bang-chan": "#e63946",
+    "lee-know": "#8ecae6",
+    "changbin": "#b5179e",
+    "hyunjin": "#f72585",
+    "han": "#ff9900",
+    "felix": "#00b4ff",
+    "seungmin": "#70e000",
+    "in": "#ffd166"
+};
 
-            document.body.style.background =
-            "radial-gradient(circle at top, #2a000d, #050510 60%)";
-        }
-    });
+let currentSlide =
+Array.from(slides).findIndex((slide) => slide.classList.contains("active"));
 
-    card.addEventListener("mouseleave", () => {
-        document.body.style.background =
-        "radial-gradient(circle at top, #16162b, #050510 60%)";
-    });
-});
+if(currentSlide === -1){
 
-// 3d effects
-cards.forEach(card => {
+    currentSlide = 0;
 
-    card.addEventListener("mousemove", (e) => {
+}
 
-        const rect = card.getBoundingClientRect();
+function getMemberName(slide){
 
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
+    return Array.from(slide.classList).find((className) => memberThemes[className]);
 
-        const centerX = rect.width / 2;
-        const centerY = rect.height / 2;
+}
 
-        const rotateX = -(y - centerY) / 10;
-        const rotateY = (x - centerX) / 10;
+function setTheme(memberName){
 
-        card.style.transform =
-        `perspective(1000px)
-        rotateX(${rotateX}deg)
-        rotateY(${rotateY}deg)
-        translateY(-10px)`;
+    const color =
+    memberThemes[memberName] || memberThemes.han;
 
-    });
+    document.body.style.setProperty("--member-color", color);
+    document.body.dataset.member = memberName;
 
+}
 
-    // reset
-    card.addEventListener("mouseleave", () => {
+function createParticles(){
 
-        card.style.transform =
-        "perspective(1000px) rotateX(0) rotateY(0)";
+    particlesContainer.innerHTML = "";
 
-    });
+    for(let index = 0; index < 42; index++){
 
-});
+        const particle =
+        document.createElement("span");
 
-// Show member dimension
-cards.forEach(card => {
+        particle.style.left = `${Math.random() * 100}%`;
+        particle.style.top = `${Math.random() * 100}%`;
+        particle.style.animationDelay = `${Math.random() * 6}s`;
+        particle.style.animationDuration = `${5 + Math.random() * 7}s`;
 
-    card.addEventListener("click", () => {
+        particlesContainer.appendChild(particle);
 
-        // hide selector
-        memberSelector.style.display = "none";
+    }
 
-        // show dimension
-        memberDimension.style.display = "flex";
+}
 
+slides.forEach((slide, index) => {
 
-        // han
-        if(card.classList.contains("han")){
+    const dot =
+    document.createElement("button");
 
-            memberName.textContent = "HAN";
+    const memberName =
+    getMemberName(slide);
 
-            memberQuote.textContent =
-            "You make Stray Kids stay.";
+    dot.classList.add("slide-dot");
+    dot.setAttribute("aria-label", `Show ${memberName}`);
 
-            memberDimension.style.background =
-            "radial-gradient(circle at center, #2b1600, #050510 70%)";
-        }
+    dot.addEventListener("click", () => {
 
-
-        // felix
-        if(card.classList.contains("felix")){
-
-            memberName.textContent = "FELIX";
-
-            memberQuote.textContent =
-            "Happiness is everywhere.";
-
-            memberDimension.style.background =
-            "radial-gradient(circle at center, #001d2a, #050510 70%)";
-        }
-
-
-        // bangchan
-        if(card.classList.contains("bangchan")){
-
-            memberName.textContent = "BANGCHAN";
-
-            memberQuote.textContent =
-            "Never give up.";
-
-            memberDimension.style.background =
-            "radial-gradient(circle at center, #2a000d, #050510 70%)";
-        }
+        showSlide(index);
 
     });
+
+    dotsContainer.appendChild(dot);
 
 });
 
-//Hide members screen
-memberSelector.style.display = 'none';
+const dots =
+document.querySelectorAll(".slide-dot");
 
+function triggerGlitch(){
 
-//Btn events
-enterBtn.addEventListener('click', () => {
-    //Hide intro screen
-    introScreen.style.display = 'none';
-    
+    document.body.classList.add("is-glitching");
 
-    memberSelector.style.display = 'flex';
+    setTimeout(() => {
+
+        document.body.classList.remove("is-glitching");
+
+    }, 420);
+
+}
+
+function showSlide(index){
+
+    slides[currentSlide].classList.remove("active");
+    dots[currentSlide].classList.remove("active");
+
+    currentSlide = (index + slides.length) % slides.length;
+
+    slides[currentSlide].classList.add("active");
+    dots[currentSlide].classList.add("active");
+
+    setTheme(getMemberName(slides[currentSlide]));
+    createParticles();
+    triggerGlitch();
+
+}
+
+function moveCursor(event){
+
+    document.body.style.setProperty("--cursor-x", `${event.clientX}px`);
+    document.body.style.setProperty("--cursor-y", `${event.clientY}px`);
+
+}
+
+enterBtn.addEventListener("click", () => {
+
+    document.body.classList.add("show-showcase");
+
 });
+
+prevBtn.addEventListener("click", () => {
+
+    showSlide(currentSlide - 1);
+
+});
+
+nextBtn.addEventListener("click", () => {
+
+    showSlide(currentSlide + 1);
+
+});
+
+lockGuideBtn.addEventListener("click", () => {
+
+    const memberName =
+    getMemberName(slides[currentSlide]);
+
+    localStorage.setItem("selectedGuide", memberName);
+    triggerGlitch();
+
+    setTimeout(() => {
+
+        window.location.href = `blog.html?member=${memberName}`;
+
+    }, 420);
+
+});
+
+document.addEventListener("mousemove", moveCursor);
+
+setTheme(getMemberName(slides[currentSlide]));
+createParticles();
+showSlide(currentSlide);
